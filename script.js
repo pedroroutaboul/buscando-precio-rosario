@@ -20,9 +20,9 @@ function searchProducts() {
                 const productName = document.createElement('h2');
                 productName.textContent = product.name;
                 const productPrice = document.createElement('p');
-                productPrice.textContent = `Price: $${product.price}`;
+                productPrice.textContent = `Precio: $${product.price}`;
                 const productSource = document.createElement('p');
-                productSource.textContent = `Source: ${product.source}`;
+                productSource.textContent = `Super: ${product.source}`;
                 productInfo.appendChild(productName);
                 productInfo.appendChild(productPrice);
                 productInfo.appendChild(productSource);
