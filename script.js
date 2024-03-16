@@ -40,3 +40,9 @@ function searchProducts() {
             console.error('Error fetching data:', error);
         });
 }
+
+document.getElementById('searchInput').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        searchProducts();
+    }
+});
