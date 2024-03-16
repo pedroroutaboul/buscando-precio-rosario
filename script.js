@@ -1,6 +1,6 @@
 function searchProducts() {
     const query = document.getElementById('searchInput').value;
-    fetch(`pedroroutaboul.pythonanywhere.com/search?query=${query}`)
+    fetch(`https://pedroroutaboul.pythonanywhere.com/search?query=${query}`)
         .then(response => response.json())
         .then(data => {
             const resultsContainer = document.getElementById('results');
