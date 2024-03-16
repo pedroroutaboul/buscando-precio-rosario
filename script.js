@@ -1,6 +1,6 @@
 function searchProducts() {
     const query = document.getElementById('searchInput').value;
-    fetch(`http://127.0.0.1:5000/search?query=${query}`)
+    fetch(`pedroroutaboul.pythonanywhere.com/search?query=${query}`)
         .then(response => response.json())
         .then(data => {
             const resultsContainer = document.getElementById('results');
