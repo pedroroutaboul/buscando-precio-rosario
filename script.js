@@ -1,10 +1,17 @@
 function searchProducts() {
     const query = document.getElementById('searchInput').value;
+    const resultsContainer = document.getElementById('results');
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    const errorMessage = document.getElementById('errorMessage');
+
+    loadingIndicator.style.display = 'block';
+    errorMessage.style.display = 'none';
+    resultsContainer.innerHTML = '';
+
     fetch(`https://pedroroutaboul.pythonanywhere.com/search?query=${query}`)
         .then(response => response.json())
         .then(data => {
-            const resultsContainer = document.getElementById('results');
-            resultsContainer.innerHTML = '';
+            loadingIndicator.style.display = 'none';
             data.products.forEach(product => {
                 const productDiv = document.createElement('div');
                 productDiv.classList.add('product');
@@ -27,6 +34,9 @@ function searchProducts() {
             });
         })
         .catch(error => {
+            loadingIndicator.style.display = 'none';
+            errorMessage.textContent = 'Error fetching data. Please try again.';
+            errorMessage.style.display = 'block';
             console.error('Error fetching data:', error);
         });
 }

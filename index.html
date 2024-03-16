@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Search</title>
+    <title>Busqueda por producto</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <h1>Product Search</h1>
         <input type="text" id="searchInput" placeholder="Search...">
-        <button onclick="searchProducts()">Search</button>
+        <button onclick="searchProducts()">Buscar</button>
         <div id="results"></div>
+        <div id="loadingIndicator" style="display: none;">Buscando...</div>
+        <div id="errorMessage" style="display: none; color: red;"></div>
     </div>
     <script src="script.js"></script>
 </body>
