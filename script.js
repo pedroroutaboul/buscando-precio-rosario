@@ -3,6 +3,7 @@ function searchProducts() {
     const resultsContainer = document.getElementById('results');
     const loadingIndicator = document.getElementById('loadingIndicator');
     const errorMessage = document.getElementById('errorMessage');
+    const searchSources = document.getElementById('searchSources'); // Obtener el elemento para mostrar los supermercados
 
     loadingIndicator.style.display = 'block';
     errorMessage.style.display = 'none';
@@ -32,12 +33,15 @@ function searchProducts() {
                 productDiv.appendChild(productInfo);
                 resultsContainer.appendChild(productDiv);
             });
+
+            // Actualizamos el texto de los supermercados
+            searchSources.textContent = `Supermercados: ${data.success_scrapper.join(', ')}`;
         })
         .catch(error => {
             loadingIndicator.style.display = 'none';
-            errorMessage.textContent = 'Error fetching data. Please try again.';
+            errorMessage.textContent = 'Error al obtener los datos. Por favor, inténtelo de nuevo.';
             errorMessage.style.display = 'block';
-            console.error('Error fetching data:', error);
+            console.error('Error al obtener los datos:', error);
         });
 }
 
