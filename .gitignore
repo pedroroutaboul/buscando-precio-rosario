@@ -1,0 +1,58 @@
+# Entorno virtual
+venv/
+.env
+
+# Archivos de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Archivos de base de datos
+*.sqlite
+*.db
+
+# Archivos de debug y logs
+debug_*.json
+debug_*.html
+errores_imagenes_*.json
+resultados_*.json
+
+# Archivos de IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Archivos de configuración local
+config_local.py
+*.local.py
+
+# Archivos de caché
+.cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Archivos temporales
+*.tmp
+*.bak
+*.swp
+*~ 
