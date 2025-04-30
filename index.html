@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Busqueda por producto</title>
+    <title>Buscando Precio Rosario</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5G09T95MTD"></script>
@@ -17,14 +18,30 @@
 </script>
 <body>
     <div class="container">
-        <h1>Busqueda por producto</h1>
-        <input type="text" id="searchInput" placeholder="Search...">
-        <button onclick="searchProducts()">Buscar</button>
-        <div id="results"></div>
+        <h1 class="text-center my-4">Buscando Precio Rosario</h1>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Buscar productos...">
+            <button onclick="searchProducts()">Buscar</button>
+        </div>
+        <div class="results-container mt-4">
+            <table class="table table-striped" id="resultsTable">
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Supermercado</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsBody">
+                </tbody>
+            </table>
+        </div>
         <p id="searchSources"></p> <!-- Agregamos un párrafo para mostrar los supermercados -->
         <div id="loadingIndicator" style="display: none;">Buscando...</div>
         <div id="errorMessage" style="display: none; color: red;"></div>
     </div>
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
