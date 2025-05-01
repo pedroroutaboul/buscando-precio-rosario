@@ -6,15 +6,8 @@ const CONFIG = {
 
 // Función para obtener el modo actual (local o producción)
 function getApiUrl() {
-    // Primero intentamos obtener el modo de los parámetros de la URL
     const urlParams = new URLSearchParams(window.location.search);
-    const mode = urlParams.get('mode');
-    
-    if (mode === 'local') {
-        return CONFIG.local;
-    }
-    
-    return CONFIG.production;
+    return urlParams.get('local') === 'true' ? CONFIG.local : CONFIG.production;
 }
 
 let currentSort = {
