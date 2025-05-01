@@ -95,10 +95,12 @@ def get_coto(query):
                                                     for sub_record in record['records']:
                                                         if isinstance(sub_record, dict) and 'attributes' in sub_record:
                                                             sub_attrs = sub_record['attributes']
-                                                            # Buscar precio
-                                                            if 'sku.referencePrice' in sub_attrs:
+                                                            # Buscar precio regular (no el precio por litro)
+                                                            if 'sku.activePrice' in sub_attrs:
                                                                 try:
-                                                                    price = float(sub_attrs['sku.referencePrice'][0])
+                                                                    price = float(sub_attrs['sku.activePrice'][0])
+                                                                    # Si encontramos el precio regular, salimos del bucle
+                                                                    break
                                                                 except (ValueError, IndexError):
                                                                     continue
                                                             # Buscar imagen
