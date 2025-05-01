@@ -25,12 +25,24 @@ let currentSort = {
 let currentData = null; // Variable para mantener los datos actuales
 
 async function searchProducts() {
-    const query = document.getElementById('searchInput').value;
-    const resultsDiv = document.getElementById('results');
-    resultsDiv.innerHTML = '<div class="loading">Buscando productos...</div>';
+    const searchInput = document.getElementById('searchInput');
+    const query = searchInput.value.trim();
+    
+    if (!query) {
+        alert('Por favor ingrese un término de búsqueda');
+        return;
+    }
+
+    const resultsBody = document.getElementById('resultsBody');
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    const errorMessage = document.getElementById('errorMessage');
+
+    resultsBody.innerHTML = '';
+    loadingIndicator.style.display = 'block';
+    errorMessage.style.display = 'none';
 
     try {
-        const response = await fetch(`https://pedroroutaboul.pythonanywhere.com/search?query=${encodeURIComponent(query)}`);
+        const response = await fetch(`${getApiUrl()}/search?query=${encodeURIComponent(query)}`);
         if (!response.ok) {
             throw new Error(`Error al buscar productos: ${response.statusText}`);
         }
@@ -38,7 +50,11 @@ async function searchProducts() {
         currentData = data; // Guardar los datos actuales
         displayResults(data);
     } catch (error) {
-        resultsDiv.innerHTML = '<div class="error">Error al buscar productos: ' + error.message + '</div>';
+        loadingIndicator.style.display = 'none';
+        errorMessage.textContent = 'Error al buscar productos: ' + error.message;
+        errorMessage.style.display = 'block';
+    } finally {
+        loadingIndicator.style.display = 'none';
     }
 }
 
