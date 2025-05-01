@@ -334,9 +334,32 @@ def search(query='', allowed_sources=ROSARIO_SOURCES):
 def search_endpoint():
     query = request.args.get('query', '')
     allowed_sources = request.args.get('allowed_sources', ROSARIO_SOURCES)
-
-    search_result = search(query=query, allowed_sources=allowed_sources)
-    return jsonify({'products': search_result})
+    
+    try:
+        search_result = search(query=query, allowed_sources=allowed_sources)
+        # Organizar resultados por supermercado
+        results = {
+            'coto': [],
+            'lagallega': []
+        }
+        
+        for product in search_result:
+            if product['source'] == 'coto':
+                results['coto'].append(product)
+            elif product['source'] == 'lagallega':
+                results['lagallega'].append(product)
+        
+        response = jsonify(results)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+    except Exception as e:
+        print(f"Error en la búsqueda: {str(e)}")
+        response = jsonify({'error': str(e)})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response, 500
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001)
+    # Solo ejecutar el servidor si se ejecuta directamente (no cuando se importa)
+    if os.environ.get('FLASK_ENV') == 'development':
+        port = int(os.environ.get('PORT', 5000))
+        app.run(host='0.0.0.0', port=port, debug=True)
