@@ -106,6 +106,9 @@ def get_coto(query):
                                                             # Buscar imagen
                                                             if 'product.mediumImage.url' in sub_attrs:
                                                                 image_url = sub_attrs['product.mediumImage.url'][0]
+                                                                # Asegurarnos de que la URL de la imagen sea completa
+                                                                if image_url and not image_url.startswith('http'):
+                                                                    image_url = f"https://www.cotodigital.com.ar{image_url}"
                                                 
                                                 # Si no hay URL de imagen, usar una imagen por defecto
                                                 if not image_url:
